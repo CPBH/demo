@@ -11,7 +11,6 @@ import citahospitalbc.demo.service.PacienteService;
 
 @RestController
 @RequestMapping("/api/paciente")
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 public class PacienteCntrl {
     private final PacienteService pacienteService;
 

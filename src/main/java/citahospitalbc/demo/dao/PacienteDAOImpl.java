@@ -25,13 +25,14 @@ public class PacienteDAOImpl implements PacienteDAO {
 
     @Override
     public int crear(PacienteDTO pacienteDTO) {
-        return jdbcTemplate.update("INSERT INTO paciente (pac_id, nombre_pac, apellidos_pac, fecha_nacimiento_pac, telefono_pac, correo_pac) VALUES(?,?,?,?,?,?)",
+        return jdbcTemplate.update("INSERT INTO paciente (pac_id, nombre_pac, apellidos_pac, fecha_nacimiento_pac, telefono_pac, correo_pac, contrasena) VALUES(?,?,?,?,?,?,?)",
                 new Object[] {
                         pacienteDTO.getPac_id(),
                         pacienteDTO.getNombre_pac(),
                         pacienteDTO.getApellidos_pac(),
                         pacienteDTO.getFecha_nacimiento_pac(),
                         pacienteDTO.getTelefono_pac(),
-                        pacienteDTO.getCorreo_pac() });
+                        pacienteDTO.getCorreo_pac(),
+                        pacienteDTO.getContrasena() });
     }
 }

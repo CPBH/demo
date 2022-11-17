@@ -18,6 +18,6 @@ public class DatoMaestroDAOImpl implements DatoMaestroDAO{
 
     @Override
     public List<DatoMaestroDTO> getAll(){
-        return jdbcTemplate.query("SELECT * FROM datomaestro",new DatoMaestroMapper());
+        return jdbcTemplate.query("SELECT * FROM datomaestro where idmaestro= 1 ",new DatoMaestroMapper());
     };
 }

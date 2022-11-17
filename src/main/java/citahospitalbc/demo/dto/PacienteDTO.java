@@ -12,4 +12,5 @@ public class PacienteDTO implements Serializable {
     private Date fecha_nacimiento_pac;
     private String telefono_pac;
     private String correo_pac;
+    private String contrasena;
 }

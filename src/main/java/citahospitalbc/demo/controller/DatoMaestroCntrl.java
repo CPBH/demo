@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/datomaestro")
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 public class DatoMaestroCntrl {
     private final DatoMaestroService datoMaestroService;
 

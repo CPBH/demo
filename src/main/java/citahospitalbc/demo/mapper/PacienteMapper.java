@@ -20,6 +20,7 @@ public class PacienteMapper implements RowMapper<PacienteDTO> {
         pacienteDTO.setFecha_nacimiento_pac(rs.getDate("fecha_nacimiento_pac"));
         pacienteDTO.setTelefono_pac(rs.getString("telefono_pac"));
         pacienteDTO.setCorreo_pac(rs.getString("correo_pac"));
+        pacienteDTO.setContrasena(rs.getString("contrasena"));
         return pacienteDTO;
     } 
     
