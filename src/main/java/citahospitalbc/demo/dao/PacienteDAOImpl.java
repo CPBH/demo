@@ -38,7 +38,11 @@ public class PacienteDAOImpl implements PacienteDAO {
     }
     @Override
     public int getXId(PacienteDTO pacienteDTO){
-        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM paciente WHERE pac_id = ?", Integer.class, new Object[]{pacienteDTO});
+            var xid = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM paciente WHERE pac_id = ?", Integer.class, new Object[]{pacienteDTO.getPac_id()});
+            if(xid > 0){
+                return 1;
+            }
+        return 0;
 
     }
     @Override

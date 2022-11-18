@@ -2,6 +2,7 @@ package citahospitalbc.demo.controller;
 
 import java.util.List;
 
+import citahospitalbc.demo.dto.Respuesta;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,16 +27,17 @@ public class PacienteCntrl {
     ;
 
     @PostMapping("/crear")
-    public ResponseEntity<String> crear(@RequestBody PacienteDTO paciente) {
+    public ResponseEntity<Respuesta> crear(@RequestBody PacienteDTO paciente) {
         try {
             var pacient = pacienteService.getXId(paciente);
             if(pacient > 0){
-                return new ResponseEntity<>("Este paciente existe", HttpStatus.CREATED);
+                return new ResponseEntity<>(new Respuesta("El paciente ya existe",paciente), HttpStatus.CREATED);
             }
             pacienteService.crear(paciente);
-            return new ResponseEntity<>("Paciente creado con exito", HttpStatus.CREATED);
+            return new ResponseEntity<>(new Respuesta("Paciente creado con exito",paciente), HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            e.printStackTrace();
+            return new ResponseEntity<>(new Respuesta(e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @PostMapping("/xId")
