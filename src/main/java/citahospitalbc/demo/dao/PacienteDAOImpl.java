@@ -25,7 +25,7 @@ public class PacienteDAOImpl implements PacienteDAO {
 
     @Override
     public int crear(PacienteDTO pacienteDTO) {
-        return jdbcTemplate.update("INSERT INTO paciente (pac_id, nombre_pac, apellidos_pac, fecha_nacimiento_pac, telefono_pac, correo_pac, contrasena) VALUES(?,?,?,?,?,?,?)",
+        return jdbcTemplate.update("INSERT INTO paciente (pac_id, nombre_pac, apellidos_pac, fecha_nacimiento_pac, telefono_pac, correo_pac, contrasena, tipo_documento_pac) VALUES(?,?,?,?,?,?,?,?)",
                 new Object[] {
                         pacienteDTO.getPac_id(),
                         pacienteDTO.getNombre_pac(),
@@ -33,6 +33,16 @@ public class PacienteDAOImpl implements PacienteDAO {
                         pacienteDTO.getFecha_nacimiento_pac(),
                         pacienteDTO.getTelefono_pac(),
                         pacienteDTO.getCorreo_pac(),
-                        pacienteDTO.getContrasena() });
+                        pacienteDTO.getContrasena(),
+                        pacienteDTO.getTipo_documento_pac() });
+    }
+    @Override
+    public int getXId(PacienteDTO pacienteDTO){
+        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM paciente WHERE pac_id = ?", Integer.class, new Object[]{pacienteDTO});
+
+    }
+    @Override
+    public PacienteDTO xId(PacienteDTO id){
+        return jdbcTemplate.queryForObject("SELECT * FROM paciente WHERE pac_id = ?", new PacienteMapper(), id.getPac_id());
     }
 }

@@ -21,6 +21,7 @@ public class PacienteMapper implements RowMapper<PacienteDTO> {
         pacienteDTO.setTelefono_pac(rs.getString("telefono_pac"));
         pacienteDTO.setCorreo_pac(rs.getString("correo_pac"));
         pacienteDTO.setContrasena(rs.getString("contrasena"));
+        pacienteDTO.setTipo_documento_pac(rs.getInt("tipo_documento_pac"));
         return pacienteDTO;
     } 
     

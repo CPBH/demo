@@ -18,8 +18,8 @@ public class LoginDAOImpl implements LoginDAO {
     public String login(LoginDTO login) {
         var respuesta = jdbcTemplate.queryForObject(SQL + " WHERE pac_id = ? AND contrasena = ?", Integer.class, new Object[]{login.getPac_id(), login.getContrasena()});
         if (respuesta > 0) {
-            return "Paciente autenticado";
+            return "1";
         }
-        return "Datos paciente invalidos";
+        return "0";
     }
 }

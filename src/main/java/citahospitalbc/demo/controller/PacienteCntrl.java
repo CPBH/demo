@@ -28,10 +28,18 @@ public class PacienteCntrl {
     @PostMapping("/crear")
     public ResponseEntity<String> crear(@RequestBody PacienteDTO paciente) {
         try {
+            var pacient = pacienteService.getXId(paciente);
+            if(pacient > 0){
+                return new ResponseEntity<>("Este paciente existe", HttpStatus.CREATED);
+            }
             pacienteService.crear(paciente);
             return new ResponseEntity<>("Paciente creado con exito", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @PostMapping("/xId")
+    public ResponseEntity<PacienteDTO> xId(@RequestBody PacienteDTO id){
+        return ResponseEntity.ok(pacienteService.xId(id));
     }
 }

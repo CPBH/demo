@@ -8,4 +8,6 @@ public interface PacienteService {
     List<PacienteDTO> getAll();
 
     int crear(PacienteDTO pacienteDTO);
+    int getXId(PacienteDTO pacienteDTO);
+    PacienteDTO xId(PacienteDTO id);
 }

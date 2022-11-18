@@ -26,4 +26,14 @@ public class PacienteServiceImpl implements PacienteService {
         return pacienteDAO.crear(pacienteDTO);
     }
 
+    @Override
+    public int getXId(PacienteDTO pacienteDTO) {
+        return pacienteDAO.getXId(pacienteDTO);
+    }
+
+    @Override
+    public PacienteDTO xId(PacienteDTO id) {
+        return pacienteDAO.xId(id);
+    }
+
 }

@@ -1,6 +1,7 @@
 package citahospitalbc.demo.controller;
 
 import citahospitalbc.demo.dto.LoginDTO;
+import citahospitalbc.demo.dto.Respuesta;
 import citahospitalbc.demo.service.LoginService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,14 @@ public class UserCntrl {
         this.service = service;
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDTO login){
+    public ResponseEntity<Respuesta> login(@RequestBody LoginDTO login){
+        String mensaje = "";
         try {
-            return new ResponseEntity<>(service.login(login), HttpStatus.CREATED);
+            mensaje = service.login(login);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new Respuesta(e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(new Respuesta(mensaje, null), HttpStatus.CREATED);
     }
 }
 
